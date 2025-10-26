@@ -1098,6 +1098,13 @@
         let currentTweetType = 'tweet';
         let hasImage = false;
 
+        // Current settings
+let currentColor = '#1DA1F2';
+let currentStyle = 'standard';
+let currentTweetType = 'tweet';
+let hasImage = false;
+let currentSize = 'medium'; // <-- ADD THIS LINE HERE
+
         // Initialize with blank avatar
         function updateAvatarInitials() {
             const username = usernameInput.value || 'Your Name';
@@ -1427,6 +1434,14 @@ resizeOptions.forEach(option => {
                     // No additional styles for standard
                     break;
             }
+            function updateCardSize() {
+    // Remove all size classes
+    tweetCard.classList.remove('size-small', 'size-medium', 'size-large');
+    
+    // Add the current size class
+    tweetCard.classList.add(`size-${currentSize}`);
+    tweetCard.classList.add('resizable');
+                }
             
             // Update accent color
             const accentElements = tweetCard.querySelectorAll('.card-verified, .card-stat i, .card-action i');
@@ -1451,7 +1466,7 @@ resizeOptions.forEach(option => {
                 link.download = 'visualify-tweet-card.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-                
+                 
                 downloadLoading.style.display = 'none';
                 successMessage.style.display = 'block';
                 
